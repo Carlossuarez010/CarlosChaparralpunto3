@@ -1,0 +1,8 @@
+Cédula: Cedula
+Nombre: carlos
+Apellido: chaparral
+Teléfono: 3214573140
+Modalidad: null
+Asignaturas Viendo: 0
+Serial: 12321
+------------------------------------------------------
