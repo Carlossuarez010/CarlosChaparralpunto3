@@ -294,7 +294,7 @@ public class Metodos {
                 }
 
             }
-            System.out.println("Ingrese el Peso: ");
+            System.out.println("Ingrese el Peso (kg): ");
             obj.setPeso(sc.nextFloat());
             lista.add(obj);
             System.out.println("¿Desea añadir mas registros? 1=SI 2=NO");
@@ -319,7 +319,7 @@ public class Metodos {
             System.out.println("Tamaño Ingresado: " + obj.getTamano());
             System.out.println("Precio ingresado " + obj.getPrecio());
             System.out.println("Almacenamiento Ingresado: " + obj.getAlmacenamiento());
-            System.out.println("Peso: " + obj.getPeso());
+            System.out.println("Peso: " + obj.getPeso() + "kg");
 
         }
     }
@@ -364,7 +364,7 @@ public class Metodos {
                 e.write("Tamaño: " + obj.tamano + "\n");
                 e.write("Precio: " + obj.precio + "\n");
                 e.write("Almacenamiento: " + obj.almacenamiento + "\n");
-                e.write("Peso: " + obj.peso + "\n");
+                e.write("Peso: " + obj.peso + "\n"+);
                 e.write("------------------------------------------------------\n");
             }
             System.out.println("Archivo de tabletas exportado correctamente.");
