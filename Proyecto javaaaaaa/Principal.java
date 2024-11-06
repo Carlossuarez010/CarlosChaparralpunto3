@@ -5,9 +5,10 @@ import java.util.Scanner;
 public class Principal {
 
     public static void main(String[] args) {
+        int inventario=0;
         Metodos m = new Metodos();
         Scanner sc = new Scanner(System.in);
-
+        InventarioTotal in = new InventarioTotal();
         LinkedList<ObjEstudianteIngenieria> listaIngenieria = new LinkedList<>();
         LinkedList<Objtableta> listaTableta = new LinkedList<>();
         LinkedList<ObjEstudianteDiseño> listaDiseno = new LinkedList<>();
@@ -21,7 +22,8 @@ public class Principal {
             System.out.println("2. Gestionar Tabletas");
             System.out.println("3. Gestionar Estudiantes de Diseño");
             System.out.println("4. Gestionar Computadores");
-            System.out.println("5. Salir");
+            System.out.println("5. Imprimir Inventario total");
+            System.out.println("6. Salir");
 
             int opcion = sc.nextInt();
             sc.nextLine(); // Consumir la nueva línea
@@ -40,8 +42,7 @@ public class Principal {
                     gestionarComputadores(m, listaComputador, sc);
                     break;
                 case 5:
-                    continuar = false;
-                    System.out.println("Saliendo del programa...");
+                 in.mostrarInventario();
                     break;
                 default:
                     System.out.println("Opción no válida. Intente de nuevo.");
@@ -147,7 +148,8 @@ public class Principal {
             System.out.println("4. Buscar Equipo");
             System.out.println("5. Exportar Archivo");
             System.out.println("6. Importar Archivo");
-            System.out.println("7. Volver al Menu Principal");
+            System.out.println("7. Mostrar Inventario");
+            System.out.println("8. Volver al Menu Principal");
             int opDis = sc.nextInt();
             sc.nextLine(); // Consumir la nueva línea
             switch (opDis) {
@@ -169,8 +171,11 @@ public class Principal {
                     m.importarArchivoEstudiantesDiseno();
                     break;
                 case 7:
-                    diseno = false;
+                    m.mostrarDiseño(lista);
                     break;
+                case 8:
+                    diseno=false;
+                    break;  
                 default:
                     System.out.println("Opción no válida.");
             }

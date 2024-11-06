@@ -1,8 +1,0 @@
-Cédula: 1077843028
-Nombre: carlos
-Apellido: chaparra
-Teléfono: 3214573140
-Número de Semestre: 2
-Promedio: 2.0
-Serial: 2004
-------------------------------------------------------

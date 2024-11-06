@@ -64,7 +64,7 @@ public class Exportar {
                 e.write("Tamaño: " + obj.tamano + "\n");
                 e.write("Precio: " + obj.precio + "\n");
                 e.write("Almacenamiento: " + obj.almacenamiento + "\n");
-                e.write("Peso: " + obj.peso + "kg");
+                e.write("Peso: " + obj.peso + "\n");
                 e.write("------------------------------------------------------\n");
             }
             System.out.println("Archivo de tabletas exportado correctamente.");

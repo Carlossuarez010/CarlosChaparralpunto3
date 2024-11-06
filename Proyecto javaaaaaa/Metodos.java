@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Scanner;
 
+
 public class Metodos {
 
     //metodo para estudiantes de ingenieria//
@@ -122,11 +123,14 @@ public class Metodos {
         Scanner teclado = new Scanner(System.in);
         String modificar;
         String serial;
+        boolean validad=true;
         String cedula;
-        System.out.println("Modificar Prestamo de Equipo por; Serial o Cedula");
+        while (validad) {
+            System.out.println("Modificar Prestamo de Equipo por; Serial o Cedula");
         modificar = teclado.next();
         for (ObjEstudianteIngenieria obj : lista) {
             if (modificar.equalsIgnoreCase("Serial")) {
+                validad=false;
                 System.out.println("Ingrese Serial del Equipo: ");
                 serial = teclado.next();
 
@@ -134,9 +138,10 @@ public class Metodos {
                 System.out.println("Serial Modificado Correctamente");
 
             } else if (modificar.equalsIgnoreCase("Cedula")) {
+                validad=false;
                 System.out.println("Ingrese Cedula: ");
-                cedula=teclado.next();
-                
+                cedula = teclado.next();
+
                 obj.setCedula(modificar);
                 System.out.println("Cedula Modificada Correctamente");
             } else {
@@ -145,10 +150,16 @@ public class Metodos {
 
         }
 
-    }
+    }        
 
+        }
+        
     //metodo para eliminar registro de ingenieria//
     public LinkedList<ObjEstudianteIngenieria> EliminarRegistro(LinkedList<ObjEstudianteIngenieria> lista) {
+        if(lista.isEmpty()){
+            System.out.println("La lista esta vacia, no se puede eliminar");
+            return lista;
+        }
         Scanner teclado = new Scanner(System.in);
         String serial;
         int cedula;
@@ -161,13 +172,13 @@ public class Metodos {
                 System.out.println("Ingrese Serial del Equipo: ");
                 serial = teclado.next();
                 lista.remove(obj.getSerial() == eliminar);
-                System.out.println("El Registro " + serial + "a Sido Eliminado Correctamente ");
+                System.out.println("El Registro " + serial + " a Sido Eliminado Correctamente ");
 
             } else if (eliminar.equalsIgnoreCase("Cedula")) {
                 System.out.println("Ingrese Cedula: ");
                 cedula = teclado.nextInt();
                 lista.remove(obj.getCedula());
-                System.out.println("El registro " + cedula + "a Sido Eliminado Correctamente ");
+                System.out.println("El registro " + cedula + " a Sido Eliminado Correctamente ");
             } else {
                 System.out.println("Opcion no valida, Intente Nuevamente...");
             }
@@ -176,7 +187,6 @@ public class Metodos {
 
         return lista;
     }
-
     //metodo exportar ingenieria//
     public void exportarArchivoEstudiantesIngenieria(LinkedList<ObjEstudianteIngenieria> lista) {
         if (lista.isEmpty()) {
@@ -254,7 +264,7 @@ public class Metodos {
     // metodos para tableta 
     public LinkedList<Objtableta> listaTableta(LinkedList<Objtableta> lista) {
         boolean continuar = true;
-        // Inicialmente se puede considerar como true para indicar que no se ha hecho ninguna selección
+        
         int stop = 0;
         while (continuar) {
 
@@ -338,6 +348,8 @@ public class Metodos {
                     || obj.getPrecio() == precio
                     || obj.getAlmacenamiento().equalsIgnoreCase(asd)
                     || obj.getPeso() == peso) {
+                        System.out.println("");
+                        System.out.println("Informacion segun el dato buscado: ");
                 System.out.println(obj.getSerial());
                 System.out.println(obj.getMarca());
                 System.out.println(obj.getTamano());
@@ -364,7 +376,7 @@ public class Metodos {
                 e.write("Tamaño: " + obj.tamano + "\n");
                 e.write("Precio: " + obj.precio + "\n");
                 e.write("Almacenamiento: " + obj.almacenamiento + "\n");
-                e.write("Peso: " + obj.peso + "\n"+);
+                e.write("Peso: " + obj.peso + "kg\n");
                 e.write("------------------------------------------------------\n");
             }
             System.out.println("Archivo de tabletas exportado correctamente.");
@@ -419,49 +431,56 @@ public class Metodos {
     }
     //----------------------------------------------------------//
 
-//aqui los metodos para estudiante de diseño
-    public LinkedList<ObjEstudianteDiseño> listaDiseno(LinkedList<ObjEstudianteDiseño> lista) {
-        boolean continuar = true;
-        int stop = 0;
+// metodos diseño
+  
+public LinkedList<ObjEstudianteDiseño> listaDiseno(LinkedList<ObjEstudianteDiseño> lista) {
+    boolean continuar = true;
+    int stop;
 
-        ObjEstudianteDiseño obj = new ObjEstudianteDiseño();
-        while (continuar) {
-            boolean modalidadEs = false;
-            String mdes;
-            System.out.println("-----------------------------------------------");
-            System.out.println("");
-            System.out.println("Ingrese cedula: ");
-            obj.setCedula(sc.next());
-            System.out.println("Ingrese nombre: ");
-            obj.setNombre(sc.next());
-            System.out.println("Ingrese apellido: ");
-            obj.setApellido(sc.next());
-            System.out.println("Ingrese el telefono: ");
-            obj.setTelefono(sc.next());
-            while (!modalidadEs) {
-                System.out.println("Ingrese Modalidad de estudio: Virtual/Presencial ");
-                mdes = sc.next();
-                if (mdes.equals("Virtual")
-                        || mdes.equals("Presencial"))//estudiar porque use equals aca//
-                {
-                    obj.setModalidaEs(sc.next());
-                }
-                modalidadEs = true;
+    while (continuar) {
+        ObjEstudianteDiseño obj = new ObjEstudianteDiseño(); 
+        boolean modalidadEs = true;
+        String mdes;
+
+        System.out.println("-----------------------------------------------");
+        System.out.println("");
+        System.out.println("Ingrese cedula: ");
+        obj.setCedula(sc.next());
+        System.out.println("Ingrese nombre: ");
+        obj.setNombre(sc.next());
+        System.out.println("Ingrese apellido: ");
+        obj.setApellido(sc.next());
+        System.out.println("Ingrese el telefono: ");
+        obj.setTelefono(sc.next());
+
+        while (modalidadEs) {
+            System.out.println("Ingrese Modalidad de estudio: Virtual/Presencial ");
+            mdes = sc.next();
+
+            if (mdes.equalsIgnoreCase("Virtual") || mdes.equalsIgnoreCase("Presencial")) {
+                obj.setModalidaEs(mdes);
+                modalidadEs = false;
+            } else {
+                System.out.println("Opcion invalida, Intente Nuevamente");
             }
-            System.out.println("Ingrese Serial:  ");
-            obj.setSerial(sc.nextInt());
-            lista.add(obj);
-            System.out.println("¿Desea añadir mas registros?  1=SI 2=NO");
-            stop = sc.nextInt();
-
-            //if para el si y no//
-            if (stop == 2) {
-                continuar = false;
-            }
-
         }
-        return lista;
+        System.out.println("Ingrese Asignaturas que esta Viendo: ");
+        obj.setAsigViendo(sc.nextInt());
+
+        System.out.println("Ingrese Serial:  ");
+        obj.setSerial(sc.nextInt());
+
+        lista.add(obj); // Agregar el nuevo objeto a la lista
+
+        System.out.println("¿Desea añadir más registros? 1=SI 2=NO");
+        stop = sc.nextInt();
+
+        if (stop == 2) {
+            continuar = false;
+        }
     }
+    return lista;
+}
 
 //metodo para mostrar lista//
     public void mostrarDiseño(LinkedList<ObjEstudianteDiseño> lista) {
@@ -493,13 +512,15 @@ public class Metodos {
                     || obj.getModalidaEs().equalsIgnoreCase(asd)
                     || obj.getAsigViendo() == asignaturasviendo
                     || obj.getSerial() == serall) {
-                System.out.println(obj.getCedula());
-                System.out.println(obj.getNombre());
-                System.out.println(obj.getApellido());
-                System.out.println(obj.getTelefono());
-                System.out.println(obj.getModalidaEs());
-                System.out.println(obj.getAsigViendo());
-                System.out.println(obj.getSerial());
+                        System.out.println("");
+                        System.out.println("Informacion Segun el Dato Buscado: ");
+                System.out.println("Cedula: "+obj.getCedula());
+                System.out.println("Nombre: "+obj.getNombre());
+                System.out.println("Apellido: "+obj.getApellido());
+                System.out.println("Telefono: "+obj.getTelefono());
+                System.out.println("Modalidad: "+obj.getModalidaEs());
+                System.out.println("Asignaturas: "+obj.getAsigViendo());
+                System.out.println("Serial: "+obj.getSerial());
             }
 
         }
@@ -510,6 +531,7 @@ public class Metodos {
     public void modificarDiseno(LinkedList<ObjEstudianteDiseño> lista) {
         Scanner teclado = new Scanner(System.in);
         String modificarr;
+        String cedula;
         boolean validasis = true;
         int serial = 0;
         while (validasis) {
@@ -519,12 +541,16 @@ public class Metodos {
                 if (modificarr.equalsIgnoreCase("Serial")) {
                     validasis = false;
                     System.out.println("Ingrese Serial del Equipo: ");
+                    serial=teclado.nextInt();
+
                     obj.setSerial(serial);
                     System.out.println("Serial Modificado Correctamente");
 
                 } else if (modificarr.equalsIgnoreCase("Cedula")) {
                     validasis = false;
                     System.out.println("Ingrese Cedula: ");
+                    cedula=teclado.next();
+
                     obj.setCedula(modificarr);
                     System.out.println("Cedula Modificada Correctamente");
 
@@ -537,20 +563,24 @@ public class Metodos {
         }
     }
 
-    //metodo para eliminar registro diseño//
-    public LinkedList<ObjEstudianteDiseño> eliminarDiseño(LinkedList<ObjEstudianteDiseño> lista) {
+       //metodo eliminar lista deseño//
+       public LinkedList<ObjEstudianteDiseño> eliminarDiseño(LinkedList<ObjEstudianteDiseño> lista) {
+        if(lista.isEmpty()){
+            System.out.println("La lista esta vacia, no se puede eliminar");
+            return lista;
+        }
         Scanner teclado = new Scanner(System.in);
         String serial;
         int cedula;
         String eliminar;
-        System.out.println("Devolucion del equipo por; Serial o Cedula");
+        System.out.println("Devolucion del equipo por: Serial o Cedula");
         eliminar = teclado.next();
 
         for (ObjEstudianteDiseño obj : lista) {
             if (eliminar.equalsIgnoreCase("serial")) {
                 System.out.println("Ingrese Serial del Equipo: ");
                 serial = teclado.next();
-                lista.remove(obj.getSerial());
+                lista.remove(obj.getSerial()==Integer.parseInt(serial));
                 System.out.println("El Registro " + serial + "a Sido Eliminado Correctamente ");
 
             } else if (eliminar.equalsIgnoreCase("Cedula")) {
@@ -566,7 +596,8 @@ public class Metodos {
 
         return lista;
     }
-
+    
+    
     //metodo exportar diseño//
     public void exportarArchivoEstudiantesDiseno(LinkedList<ObjEstudianteDiseño> lista) {
         if (lista.isEmpty()) {
@@ -743,6 +774,8 @@ public class Metodos {
                     || obj.getPrecio() == precio
                     || obj.getSisOperativo().equalsIgnoreCase(asd)
                     || obj.getProcesador().equalsIgnoreCase(asd)) {
+                        System.out.println("");
+                        System.out.println("Informacion segun el dato buscado: ");
                 System.out.println(obj.getSerial());
                 System.out.println(obj.getMarca());
                 System.out.println(obj.getTamaño());
