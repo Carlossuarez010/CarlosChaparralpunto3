@@ -17,6 +17,9 @@ public class Principal {
         boolean continuar = true;
 
         while (continuar) {
+            System.out.println("--------------------------------");
+            System.out.println("Universidad Juan de Dios");
+            System.out.println("");
             System.out.println("\nSeleccione una opción:");
             System.out.println("1. Gestionar Estudiantes de Ingeniería");
             System.out.println("2. Gestionar Tabletas");
